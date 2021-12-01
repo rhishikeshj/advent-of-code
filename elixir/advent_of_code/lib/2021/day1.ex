@@ -26,8 +26,21 @@ defmodule AOC.Day1 do
   end
 
   @doc """
+  Part 1
   Count the number of times a number is greater than its predecessor in a list
   """
   @spec count_increases(list) :: pos_integer
   def count_increases(inputs \\ get_inputs()), do: count_when_prev(inputs, &>/2)
+
+  @doc """
+  Part 2
+  Count the number of times a 3 number window is greater than its predecessor 3 number window in a list
+  """
+  @spec count_increases(list) :: pos_integer
+  def count_window_increases(inputs \\ get_inputs()) do
+    inputs
+    |> Enum.chunk_every(3, 1, :discard)
+    |> Enum.map(&Enum.sum/1)
+    |> count_when_prev(&>/2)
+  end
 end
