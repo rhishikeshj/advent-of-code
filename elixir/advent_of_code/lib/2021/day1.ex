@@ -9,17 +9,17 @@ defmodule AOC.Day1 do
   """
   @spec get_inputs(File) :: [String.t()]
   def get_inputs(f \\ "lib/inputs/day1.txt"),
-    do: File.read!(f) |> String.trim() |> String.split("\n")
+    do: File.read!(f) |> String.trim() |> String.split("\n") |> Enum.map(&String.to_integer/1)
 
   @doc """
   Count the number of times a given fun returns true for an element and it's predecessor in a list.
   fun is a function which gets the current element as the first arg and prev element as the second arg.
   """
   @spec count_when_prev(list, fun()) :: pos_integer
-  def count_when_prev(list, fun) do
+  def count_when_prev([hd | tail], fun) do
     {count, _a} =
-      Enum.reduce(list, {0, Enum.at(list, 0)}, fn x, {c, prev} ->
-        if fun.(x, prev), do: {c + 1, prev}, else: {c, x}
+      Enum.reduce(tail, {0, hd}, fn x, {c, prev} ->
+        if fun.(x, prev), do: {c + 1, x}, else: {c, x}
       end)
 
     count
