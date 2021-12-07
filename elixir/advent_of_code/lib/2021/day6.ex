@@ -6,7 +6,6 @@ defmodule AOC.Day6 do
 
   @doc """
   Read the input file
-  Returns the data as a tuple with inputs as first element and bingo boards as second
   """
   @spec get_inputs(File) :: [String.t()]
   def get_inputs(f \\ "lib/inputs/day6.txt") do
@@ -26,9 +25,9 @@ defmodule AOC.Day6 do
   def inc_day(ages) do
     ages
     |> Enum.map(fn
-      {8, v} -> {8, ages[0]}
-      {6, v} -> {6, ages[7] + ages[0]}
-      {k, v} -> {k, ages[k + 1]}
+      {8, _v} -> {8, ages[0]}
+      {6, _v} -> {6, ages[7] + ages[0]}
+      {k, _v} -> {k, ages[k + 1]}
     end)
     |> Enum.into(%{})
   end

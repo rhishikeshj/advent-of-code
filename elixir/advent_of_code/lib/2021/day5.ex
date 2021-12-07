@@ -6,7 +6,6 @@ defmodule AOC.Day5 do
 
   @doc """
   Read the input file
-  Returns the data as a tuple with inputs as first element and bingo boards as second
   """
   @spec get_inputs(File) :: [String.t()]
   def get_inputs(f \\ "lib/inputs/day5.txt") do
