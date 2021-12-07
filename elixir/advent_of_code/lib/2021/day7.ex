@@ -30,10 +30,10 @@ defmodule AOC.Day7 do
   end
 
   @doc """
-  Find sum of the fibonacci series of this number.
-  ie. fib_sum 7 -> 7+6+5+4+3+2+1
+  Find sum of numbers from 1 to this number.
+  ie. sum_to_1 7 -> 7+6+5+4+3+2+1
   """
-  def fib_sum(num), do: (num + 1) * trunc(num / 2) + trunc((num + 1) / 2) * rem(num, 2)
+  def sum_to_1(num), do: trunc(num * (num + 1) / 2)
 
   @doc """
   Find sum of distances of given array to given number
@@ -44,10 +44,10 @@ defmodule AOC.Day7 do
 
   @doc """
   Find sum of incremental distances of array to given number.
-  Incremental distance is essentially fib_sum of the difference
+  Incremental distance is essentially sum_to_1 of the difference
   """
   def incremental_distance_to_num(arr, num) do
-    arr |> Enum.reduce(0, fn x, dist -> dist + fib_sum(abs(x - num)) end)
+    arr |> Enum.reduce(0, fn x, dist -> dist + sum_to_1(abs(x - num)) end)
   end
 
   def part1(f \\ "lib/inputs/day7.txt") do
